@@ -1,6 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/actions';
 import css from './ContactListItem.module.css';
 
-export default function ContactListItem({ id, name, number, onDelete }) {
+export default function ContactListItem({ id, name, number }) {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteContact(id));
+  };
+
   return (
     <li className={css.item}>
       <span className={css.span}>{name}</span>
@@ -8,9 +16,7 @@ export default function ContactListItem({ id, name, number, onDelete }) {
       <button
         className={css.button__delete}
         type="button"
-        onClick={() => {
-          onDelete(id);
-        }}
+        onClick={handleDelete}
       >
         Delete
       </button>

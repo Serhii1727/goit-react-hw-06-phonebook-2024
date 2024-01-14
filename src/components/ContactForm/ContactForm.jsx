@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/actions';
 import css from './ContactForm.module.css';
 
 export default function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
 
   const handleChangeInput = event => {
     const { name, value } = event.currentTarget;
@@ -17,9 +20,9 @@ export default function ContactForm({ onSubmit }) {
     }
   };
 
-  const addContact = event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    onSubmit({ name, number });
+    dispatch(addContact(name, number));
     resetInputForm();
   };
 
@@ -29,7 +32,7 @@ export default function ContactForm({ onSubmit }) {
   };
 
   return (
-    <form className={css.form} onSubmit={addContact}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <label className={css.label}>
         <span className={css.label__name}>Name</span>
         <input
