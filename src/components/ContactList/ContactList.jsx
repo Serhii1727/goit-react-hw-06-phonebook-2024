@@ -5,7 +5,7 @@ import css from './ContactList.module.css';
 
 export default function ContactList() {
   const contacts = useSelector(getContacts);
-  console.log(contacts);
+
   return (
     <ul className={css.list}>
       {contacts.length > 0 &&

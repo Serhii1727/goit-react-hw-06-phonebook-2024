@@ -13,4 +13,6 @@ export const addContact = createAction(
   }
 );
 
-export const deleteContact = createAction('contacts/deleteContact');
+export const deleteContact = createAction('contacts/deleteContact', id => {
+  return { payload: id };
+});
