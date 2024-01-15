@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/selectors';
 import { addContact } from '../../redux/contacts/sliceContacts';
@@ -36,7 +35,7 @@ export default function ContactForm() {
       return;
     }
 
-    dispatch(addContact({ name, number, id: nanoid() }));
+    dispatch(addContact(name, number));
     resetInputForm();
   };
 
