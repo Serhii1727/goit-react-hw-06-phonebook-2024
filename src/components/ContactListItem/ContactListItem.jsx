@@ -6,7 +6,6 @@ export default function ContactListItem({ id, name, number }) {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    console.log(dispatch(deleteContact(id)));
     dispatch(deleteContact(id));
   };
 

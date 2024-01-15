@@ -1,8 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addContact, deleteContact } from './actions';
+import { addContact, deleteContact, filterContacts } from './actions';
 
 const initialState = {
   contacts: [],
+  filter: '',
 };
 
 export const contactsReducer = createReducer(initialState.contacts, builder => {
@@ -13,4 +14,10 @@ export const contactsReducer = createReducer(initialState.contacts, builder => {
     .addCase(deleteContact, (state, action) => {
       return state.filter(contact => contact.id !== action.payload);
     });
+});
+
+export const filterReducer = createReducer(initialState.filter, builder => {
+  builder.addCase(filterContacts, (state, action) => {
+    return (state = action.payload);
+  });
 });
