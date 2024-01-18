@@ -6,13 +6,13 @@ import css from './ContactList.module.css';
 
 export default function ContactList() {
   const filter = useSelector(getFilter);
-  const contacts = useSelector(getContacts);
+  const { contacts } = useSelector(getContacts);
 
   const visibleContacts = getFilterContacts(filter, contacts);
 
   return (
     <ul className={css.list}>
-      {contacts.length > 0 &&
+      {visibleContacts.length > 0 &&
         visibleContacts.map(({ id, name, number }) => (
           <ContactListItem key={id} id={id} name={name} number={number} />
         ))}

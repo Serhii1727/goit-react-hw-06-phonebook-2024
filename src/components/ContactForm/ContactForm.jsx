@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/selectors';
 import { addContact } from '../../redux/contacts/sliceContacts';
 import css from './ContactForm.module.css';
+import { nanoid } from '@reduxjs/toolkit';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
+  const { contacts } = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const handleChangeInput = event => {
@@ -35,7 +36,7 @@ export default function ContactForm() {
       return;
     }
 
-    dispatch(addContact(name, number));
+    dispatch(addContact({ name, number, id: nanoid() }));
     resetInputForm();
   };
 
